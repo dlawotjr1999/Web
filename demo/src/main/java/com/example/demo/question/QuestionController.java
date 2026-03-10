@@ -20,6 +20,7 @@ public class QuestionController {
     
     private final QuestionService questionService;
     
+    // GetMapping Annotation : URL과의 mapping 담당. 서버의 리소스 조회(HTTP의 GET Method)
     @GetMapping("list")
     public String list(Model model) {
         List<Question> questionList = questionService.getList();
@@ -34,6 +35,7 @@ public class QuestionController {
         return "question_detail";
     }
 
+    // PostMapping Annotation : 서버에 리소스 등록(HTTP의 POST Method)
     @PostMapping("/create")
     public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
         if(bindingResult.hasErrors())

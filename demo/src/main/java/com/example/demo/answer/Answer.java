@@ -27,6 +27,7 @@ public class Answer {
 
     private LocalDateTime createDate;
 
+    // ManyToOne Annotation : N:1 관계를 나타냄. 여기서는 여러 개의 답변들이 하나의 질문에 대응함을 의미함
     @ManyToOne
     private Question question;
 }
