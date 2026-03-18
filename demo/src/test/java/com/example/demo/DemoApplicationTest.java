@@ -16,6 +16,7 @@ import com.example.demo.answer.Answer;
 import com.example.demo.answer.AnswerRepository;
 import com.example.demo.question.Question;
 import com.example.demo.question.QuestionRepository;
+import com.example.demo.question.QuestionService;
 
 import jakarta.transaction.Transactional;
 
@@ -30,7 +31,11 @@ public class DemoApplicationTest {
     private QuestionRepository questionRepository;
 
     @Autowired
+    private QuestionService questionService;
+
+    @Autowired
     private AnswerRepository answerRepository;
+
 
     @BeforeEach
     void clear() {
@@ -147,5 +152,15 @@ public class DemoApplicationTest {
 
         assertEquals(1, answerList.size());
         assertEquals("Yes. It is generated automatically.", answerList.get(0).getContent());
+    }
+
+    // Create enormous data
+    @Test
+    void TestJpa11() {
+        for(int i = 1; i <= 300; ++i) {
+            String subject = String.format("Test data : [%03d]", i);
+            String content = "null";
+            this.questionService.create(subject, content);
+        }
     }
 }

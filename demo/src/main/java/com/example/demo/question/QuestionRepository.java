@@ -1,5 +1,7 @@
 package com.example.demo.question;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
@@ -9,4 +11,5 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     // 예를 들어, subject와 content 필드가 있을 때, findBySubjectAndContent는 가능하지만 findBySubjectsAndContents는 불가능
     Question findBySubject(String subject);
     Question findBySubjectAndContent(String subject, String content);
+    Page<Question> findAll(Pageable pageable);
 }
